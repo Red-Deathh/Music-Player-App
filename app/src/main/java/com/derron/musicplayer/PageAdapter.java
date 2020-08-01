@@ -15,7 +15,15 @@ class PageAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return null;
+        switch (position){
+            case 0:
+                return new AllSongs();
+            case 1:
+                return new Playlist();
+            case 2:
+                return new Album();
+            default:return new AllSongs();
+        }
     }
 
     @Override
