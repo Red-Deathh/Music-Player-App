@@ -6,10 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 class PageAdapter extends FragmentStatePagerAdapter {
-    int numoftabs;
-    public PageAdapter(@NonNull FragmentManager fm, int numoftabs) {
+
+    public PageAdapter(@NonNull FragmentManager fm) {
         super(fm);
-        this.numoftabs = numoftabs;
     }
 
     @NonNull
@@ -28,6 +27,6 @@ class PageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return numoftabs;
+        return 3;
     }
 }

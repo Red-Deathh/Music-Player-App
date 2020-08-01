@@ -18,15 +18,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewPager = findViewById(R.id.viewpager);
         PageAdapter adapter;
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,new AllSongs(),null).commit();
 
-        adapter = new PageAdapter(getSupportFragmentManager(),bottomNavigationView.getMaxItemCount());
-        viewPager.setAdapter(adapter);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,new AllSongs(),null).commit();
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
