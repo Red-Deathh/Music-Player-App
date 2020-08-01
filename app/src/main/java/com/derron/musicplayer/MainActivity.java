@@ -1,48 +1,30 @@
 package com.derron.musicplayer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
-    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PageAdapter adapter;
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,new AllSongs(),null).commit();
-        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_songs, R.id.navigation_playlist, R.id.navigation_album)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            Fragment selectedfragment = null;
-
-            switch (menuItem.getItemId()){
-                case R.id.songlist:
-                    selectedfragment = new AllSongs();
-                    break;
-                case R.id.playlist:
-                    selectedfragment = new Playlist();
-                    break;
-                case R.id.album:
-                    selectedfragment = new Album();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, selectedfragment,null).commit();
-            return true;
-        }
-    };
 }
