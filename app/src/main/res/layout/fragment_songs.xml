@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Song"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:textStyle="bold" />
 
 
